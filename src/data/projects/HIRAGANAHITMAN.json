@@ -1,0 +1,38 @@
+{
+  "order": 4,
+  "title": "Hiragana Hitman",
+  "year": "2026",
+  "featured": false,
+  "summary": "A VR educational game from Kent Hack Enough 2026 where players punch the correct hiragana character after being shown a romaji prompt, blending Japanese reading practice with physical movement.",
+  "impact": "Led the visual and environment side of the build by creating the custom shader pipeline, building scenes and levels, refining materials and textures, and implementing scoreboard storage for repeatable scoring.",
+  "details": [
+    "Built the game's custom shader pipeline to support the futuristic-caveman VR look and give the environment a more cohesive visual identity.",
+    "Created levels and scene layouts, then altered materials and textures to turn the Japanese-learning concept into a playable and readable 3D space.",
+    "Implemented scoreboard functionality and score storage while collaborating inside a Unity 6 project that used Git and LFS for version control."
+  ],
+  "stack": [
+    "Unity 6",
+    "C#",
+    "VR",
+    "Git LFS"
+  ],
+  "images": [
+    {
+      "src": "/project-media/signal-studio-01.svg",
+      "alt": "Hiragana Hitman gameplay view with a romaji prompt and selectable hiragana answers.",
+      "caption": "VR answer lane and prompt flow"
+    },
+    {
+      "src": "/project-media/signal-studio-02.svg",
+      "alt": "Hiragana Hitman arena concept showing the themed environment and interactive target layout.",
+      "caption": "Futuristic-caveman training arena"
+    },
+    {
+      "src": "/project-media/signal-studio-03.svg",
+      "alt": "Hiragana Hitman score view showing repeat-play feedback and stored results.",
+      "caption": "Score tracking and replay feedback"
+    }
+  ],
+  "devpostURL": "https://devpost.com/software/future-caveman-hiragana-hitman",
+  "sourceUrl": "https://github.com/Jdemore/TeamRedHatss"
+}

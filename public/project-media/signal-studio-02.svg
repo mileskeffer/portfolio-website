@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Signal Studio slide two</title>
+  <desc id="desc">Publishing workspace with modular content blocks and sidebar controls.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8d9c0" />
+      <stop offset="100%" stop-color="#1f6f78" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" rx="40" fill="url(#bg)" />
+  <rect x="54" y="54" width="1092" height="652" rx="30" fill="#fffaf1" opacity="0.94" />
+  <rect x="86" y="92" width="248" height="576" rx="26" fill="#143f45" />
+  <rect x="128" y="140" width="148" height="16" rx="8" fill="#fffaf1" opacity="0.7" />
+  <rect x="128" y="196" width="164" height="74" rx="18" fill="#fffaf1" opacity="0.12" />
+  <rect x="128" y="292" width="164" height="74" rx="18" fill="#fffaf1" opacity="0.12" />
+  <rect x="128" y="388" width="164" height="74" rx="18" fill="#fffaf1" opacity="0.12" />
+  <rect x="374" y="94" width="734" height="86" rx="24" fill="#efe2cd" />
+  <rect x="410" y="124" width="264" height="16" rx="8" fill="#143f45" opacity="0.24" />
+  <rect x="374" y="210" width="444" height="458" rx="30" fill="#f4ede3" />
+  <rect x="410" y="248" width="372" height="138" rx="24" fill="#d97833" opacity="0.9" />
+  <rect x="410" y="410" width="160" height="112" rx="22" fill="#1f6f78" opacity="0.88" />
+  <rect x="594" y="410" width="188" height="112" rx="22" fill="#efe2cd" />
+  <rect x="848" y="210" width="260" height="458" rx="30" fill="#143f45" />
+  <rect x="884" y="250" width="180" height="16" rx="8" fill="#fffaf1" opacity="0.7" />
+  <rect x="884" y="298" width="180" height="96" rx="22" fill="#fffaf1" opacity="0.1" />
+  <rect x="884" y="422" width="180" height="96" rx="22" fill="#fffaf1" opacity="0.1" />
+</svg>

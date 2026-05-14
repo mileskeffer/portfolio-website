@@ -1,0 +1,15 @@
+---
+import PortfolioPage from '../components/PortfolioPage';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getClientPortfolioContent, getPortfolioContent, getProtectedContactContent } from '../lib/portfolio';
+
+export const prerender = true;
+
+const portfolio = await getPortfolioContent();
+const clientPortfolio = getClientPortfolioContent(portfolio);
+const contactDetails = getProtectedContactContent(portfolio);
+---
+
+<BaseLayout title={`${clientPortfolio.about.name} | Portfolio`} description={clientPortfolio.about.tagline}>
+  <PortfolioPage client:load portfolio={clientPortfolio} contactDetails={contactDetails} />
+</BaseLayout>

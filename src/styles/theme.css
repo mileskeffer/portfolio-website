@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+
+/*
+  Portfolio theme controls
+  Edit this file when you want to change the site's fonts or color palette.
+*/
+
+:root {
+  color-scheme: dark;
+
+  /* Typography */
+  --heading-font: "Space Grotesk", "Inter", "Segoe UI Variable Display", "Segoe UI", sans-serif;
+  --body-font: "Manrope", "Inter", "Segoe UI Variable Text", "Segoe UI", sans-serif;
+
+  /* Layout tokens */
+  --max-width: 1180px;
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 999px;
+  --shadow: 0 34px 100px rgba(2, 6, 23, 0.52);
+
+  /* Base palette */
+  --page-bg: #040b16;
+  --page-gradient-start: #040a14;
+  --page-gradient-mid: #0a1422;
+  --page-gradient-end: #162235;
+  --surface: rgba(10, 20, 36, 0.66);
+  --surface-strong: rgba(26, 42, 67, 0.58);
+  --glass-surface: rgba(11, 24, 43, 0.76);
+  --card-surface: rgba(15, 31, 54, 0.95);
+  --control-surface: rgba(19, 40, 71, 0.96);
+  --project-image-bg: #12233b;
+  --border: rgba(157, 201, 255, 0.26);
+  --text-main: #f8fbff;
+  --text-soft: #e2eeff;
+  --text-faint: #b5caea;
+  --glass-highlight: rgba(255, 255, 255, 0.05);
+  --glass-panel-tint: rgba(46, 178, 255, 0.18);
+  --glass-panel-tint-alt: rgba(34, 211, 238, 0.12);
+  --glass-card-tint: rgba(46, 178, 255, 0.14);
+  --glass-card-tint-alt: rgba(34, 211, 238, 0.08);
+
+  /* Brand accents */
+  --accent: #2eb2ff;
+  --accent-strong: #7ddcff;
+  --accent-soft: rgba(46, 178, 255, 0.22);
+  --accent-alt: #22d3ee;
+  --accent-alt-soft: rgba(34, 211, 238, 0.24);
+  --accent-contrast: #02111f;
+  --chip-text: #f3fbff;
+
+  /* State colors */
+  --error-soft: rgba(248, 113, 113, 0.18);
+  --error-strong: #fecaca;
+  --note-bg: rgba(46, 178, 255, 0.2);
+  --note-text: #e0f2ff;
+
+  /* Decorative surfaces */
+  --page-glow-primary: rgba(37, 99, 235, 0.34);
+  --page-glow-secondary: rgba(96, 165, 250, 0.18);
+  --page-glow-tertiary: rgba(59, 130, 246, 0.22);
+  --page-glow-quaternary: rgba(148, 163, 184, 0.18);
+  --grid-line: rgba(167, 184, 209, 0.1);
+  --hero-orb: rgba(46, 178, 255, 0.26);
+  --verification-gradient-start: rgba(46, 178, 255, 0.18);
+  --verification-gradient-end: rgba(34, 211, 238, 0.16);
+  --overlay-bg: rgba(2, 6, 23, 0.72);
+  --modal-bg: rgba(12, 22, 38, 0.96);
+  --status-bg: rgba(20, 43, 78, 0.94);
+  --button-secondary-hover: rgba(46, 178, 255, 0.16);
+  --modal-button-hover: rgba(46, 178, 255, 0.16);
+  --carousel-button-bg: rgba(4, 10, 20, 0.72);
+  --carousel-button-bg-hover: rgba(4, 10, 20, 0.9);
+  --carousel-button-border: rgba(219, 240, 255, 0.22);
+  --carousel-button-text: #f7fbff;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --shadow: 0 28px 80px rgba(15, 23, 42, 0.12);
+
+  --page-bg: #eaf1fb;
+  --page-gradient-start: #f7fbff;
+  --page-gradient-mid: #eef4fc;
+  --page-gradient-end: #dde7f4;
+  --surface: rgba(246, 249, 255, 0.68);
+  --surface-strong: rgba(251, 253, 255, 0.72);
+  --glass-surface: rgba(247, 251, 255, 0.8);
+  --card-surface: rgba(250, 253, 255, 0.97);
+  --control-surface: rgba(239, 247, 255, 0.98);
+  --project-image-bg: #dbe7f4;
+  --border: rgba(74, 114, 184, 0.2);
+  --text-main: #081a34;
+  --text-soft: #365174;
+  --text-faint: #617ca2;
+  --glass-highlight: rgba(255, 255, 255, 0.84);
+  --glass-panel-tint: rgba(2, 132, 255, 0.1);
+  --glass-panel-tint-alt: rgba(6, 182, 212, 0.08);
+  --glass-card-tint: rgba(2, 132, 255, 0.08);
+  --glass-card-tint-alt: rgba(6, 182, 212, 0.05);
+
+  --accent: #0284ff;
+  --accent-strong: #0f5bd6;
+  --accent-soft: rgba(2, 132, 255, 0.14);
+  --accent-alt: #06b6d4;
+  --accent-alt-soft: rgba(6, 182, 212, 0.16);
+  --accent-contrast: #eff6ff;
+  --chip-text: #13438e;
+
+  --error-soft: rgba(220, 38, 38, 0.1);
+  --error-strong: #b91c1c;
+  --note-bg: rgba(2, 132, 255, 0.1);
+  --note-text: #1553b7;
+
+  --page-glow-primary: rgba(96, 165, 250, 0.22);
+  --page-glow-secondary: rgba(148, 163, 184, 0.22);
+  --page-glow-tertiary: rgba(59, 130, 246, 0.16);
+  --page-glow-quaternary: rgba(191, 219, 254, 0.22);
+  --grid-line: rgba(59, 130, 246, 0.06);
+  --hero-orb: rgba(2, 132, 255, 0.2);
+  --verification-gradient-start: rgba(2, 132, 255, 0.1);
+  --verification-gradient-end: rgba(6, 182, 212, 0.1);
+  --overlay-bg: rgba(15, 23, 42, 0.42);
+  --modal-bg: rgba(250, 252, 255, 0.98);
+  --status-bg: rgba(236, 245, 255, 0.96);
+  --button-secondary-hover: rgba(2, 132, 255, 0.07);
+  --modal-button-hover: rgba(2, 132, 255, 0.07);
+  --carousel-button-bg: rgba(15, 23, 42, 0.84);
+  --carousel-button-bg-hover: rgba(15, 23, 42, 0.96);
+  --carousel-button-border: rgba(255, 255, 255, 0.2);
+  --carousel-button-text: #f8fbff;
+}

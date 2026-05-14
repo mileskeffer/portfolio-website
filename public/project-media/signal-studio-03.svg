@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Signal Studio slide three</title>
+  <desc id="desc">Component library board with typography, cards, and CTA styles.</desc>
+  <rect width="1200" height="760" rx="40" fill="#f0e4d0" />
+  <rect x="60" y="60" width="1080" height="640" rx="30" fill="#fffaf2" />
+  <rect x="100" y="104" width="328" height="244" rx="28" fill="#1f6f78" />
+  <rect x="458" y="104" width="272" height="112" rx="24" fill="#d97b34" />
+  <rect x="458" y="236" width="272" height="112" rx="24" fill="#efe0c8" />
+  <rect x="760" y="104" width="280" height="244" rx="28" fill="#173b3f" />
+  <rect x="100" y="386" width="184" height="240" rx="24" fill="#efe0c8" />
+  <rect x="310" y="386" width="184" height="240" rx="24" fill="#d97b34" opacity="0.88" />
+  <rect x="520" y="386" width="184" height="240" rx="24" fill="#1f6f78" opacity="0.88" />
+  <rect x="730" y="386" width="310" height="240" rx="24" fill="#efe0c8" />
+  <rect x="136" y="142" width="208" height="20" rx="10" fill="#fffaf2" opacity="0.74" />
+  <rect x="136" y="186" width="160" height="68" rx="18" fill="#fffaf2" opacity="0.18" />
+  <rect x="794" y="144" width="176" height="18" rx="9" fill="#fffaf2" opacity="0.68" />
+  <rect x="794" y="188" width="176" height="112" rx="20" fill="#fffaf2" opacity="0.12" />
+</svg>

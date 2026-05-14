@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Northstar Commerce slide three</title>
+  <desc id="desc">Mobile-first purchase journey with editorial sections and call to action modules.</desc>
+  <rect width="1200" height="760" rx="40" fill="#17383d" />
+  <rect x="74" y="74" width="228" height="612" rx="34" fill="#fff6ea" />
+  <rect x="344" y="74" width="228" height="612" rx="34" fill="#fff6ea" />
+  <rect x="614" y="74" width="228" height="612" rx="34" fill="#fff6ea" />
+  <rect x="884" y="74" width="242" height="612" rx="34" fill="#f1c890" />
+  <rect x="104" y="120" width="168" height="112" rx="22" fill="#d77e33" />
+  <rect x="104" y="262" width="168" height="18" rx="9" fill="#17383d" opacity="0.22" />
+  <rect x="104" y="296" width="168" height="18" rx="9" fill="#17383d" opacity="0.14" />
+  <rect x="374" y="120" width="168" height="164" rx="22" fill="#f0ddc0" />
+  <rect x="644" y="120" width="168" height="212" rx="22" fill="#17383d" />
+  <rect x="918" y="120" width="176" height="18" rx="9" fill="#17383d" opacity="0.2" />
+  <rect x="918" y="164" width="176" height="124" rx="22" fill="#fff6ea" opacity="0.42" />
+</svg>

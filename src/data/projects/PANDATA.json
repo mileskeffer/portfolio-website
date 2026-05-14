@@ -1,0 +1,40 @@
+{
+  "order": 1,
+  "title": "Capstone Project: Pandata",
+  "year": "2026",
+  "featured": true,
+  "summary": "A Flask-based platform for managing consulting projects through shared workspaces, file uploads, people imports, reports, and planning tools, giving teams one place to keep project operations organized.",
+  "impact": "Led the Google integration, calendar functionality, timeline experience, and major UI design work, helping turn the capstone into a more cohesive project-management product across the dashboard and project workspace pages.",
+  "details": [
+    "Implemented the Google sign-in and calendar integration flow, including OAuth-based authentication, token handling, and syncing primary Google Calendar events into the app's scheduling workflow.",
+    "Built and refined the project calendar and timeline experience so teams could create events, review schedules, and manage planning data in a clearer workspace.",
+    "Designed and polished the UI across key pages, then contributed smaller improvements throughout the product in areas like project settings, sharing, files, and other day-to-day workflow surfaces."
+  ],
+  "stack": [
+    "Flask",
+    "Python",
+    "Jinja2",
+    "SQLAlchemy",
+    "Google OAuth / Calendar API",
+    "Pandas / OpenPyXL"
+  ],
+  "images": [
+    {
+      "src": "/project-media/pandata-01.png",
+      "alt": "Pandata workspace dashboard with project cards, navigation, and status panels.",
+      "caption": "Shared project workspace dashboard"
+    },
+    {
+      "src": "/project-media/pandata-02.png",
+      "alt": "Pandata calendar and timeline planning view with project events and scheduling tools.",
+      "caption": "Calendar and timeline planning tools"
+    },
+    {
+      "src": "/project-media/pandata-03.png",
+      "alt": "Pandata authentication and connected workspace flow highlighting Google integration and synced planning data.",
+      "caption": "Google-connected workflow and UI polish"
+    }
+  ],
+  "liveUrl": "https://pandata.work/",
+  "sourceUrl": "https://github.com/PusiaPaker/CDMP"
+}

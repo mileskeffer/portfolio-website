@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Northstar Commerce slide one</title>
+  <desc id="desc">Storefront hero with campaign imagery and product feature copy.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f2ddbf" />
+      <stop offset="100%" stop-color="#d77e33" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" rx="40" fill="url(#bg)" />
+  <rect x="62" y="62" width="1076" height="636" rx="30" fill="#fffaf1" opacity="0.95" />
+  <rect x="98" y="112" width="458" height="476" rx="30" fill="#15383d" />
+  <rect x="590" y="112" width="452" height="220" rx="28" fill="#f0e2cb" />
+  <rect x="590" y="366" width="452" height="222" rx="28" fill="#fff3df" />
+  <rect x="132" y="156" width="204" height="18" rx="9" fill="#fffaf1" opacity="0.74" />
+  <rect x="132" y="206" width="276" height="94" rx="22" fill="#fffaf1" opacity="0.14" />
+  <rect x="132" y="330" width="178" height="52" rx="26" fill="#d77e33" />
+  <rect x="630" y="152" width="262" height="18" rx="9" fill="#15383d" opacity="0.22" />
+  <rect x="630" y="194" width="218" height="18" rx="9" fill="#15383d" opacity="0.16" />
+</svg>

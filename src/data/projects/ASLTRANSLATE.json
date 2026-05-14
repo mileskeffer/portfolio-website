@@ -1,0 +1,38 @@
+{
+  "order": 3,
+  "title": "aslTranslate",
+  "year": "2025",
+  "featured": false,
+  "summary": "2025 KHE Hackathon overall winner. This project is a web application that breaks ASL down to it's core aspects to neatly organize a library of guestures and words. It allows for the searching of signs based on entered parameters such as hand shape, movement, location, etc.",
+  "impact": "Assisted in creating a backend with Express and node.js and implemented MySQL as a database.",
+  "details": [
+    "Gained deeper understanding of MySQL server architecture and remote database implementation.",
+    "Implemented search functionality to allow users to find ASL signs based on various parameters.",
+    "Integrated database functionality with frontend components."
+  ],
+  "stack": [
+    "MySQL/Server",
+    "Express.js/Node.js",
+    "Flask",
+    "HTML/CSS/JS"
+  ],
+  "images": [
+    {
+      "src": "/project-media/atlas-ops-01.svg",
+      "alt": "Atlas Ops operations dashboard showing charts and route activity.",
+      "caption": "Operations dashboard overview"
+    },
+    {
+      "src": "/project-media/atlas-ops-02.svg",
+      "alt": "Atlas Ops scheduling view with task cards and shipment status.",
+      "caption": "Scheduling and task management"
+    },
+    {
+      "src": "/project-media/atlas-ops-03.svg",
+      "alt": "Atlas Ops analytics panel with KPI summaries and maps.",
+      "caption": "Analytics and performance tracking"
+    }
+  ],
+  "devpostURL": "https://devpost.com/software/asl-translator-6shtz4",
+  "sourceUrl": "https://github.com/ASL-Translate/aslTranslate"
+}

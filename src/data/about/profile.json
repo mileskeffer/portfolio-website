@@ -1,0 +1,38 @@
+{
+  "order": 1,
+  "name": "Miles Keffer",
+  "role": "Computer Science Student",
+  "tagline": "Hello!",
+  "intro": "Welcome to my website. Below you can find information about me, my projects that I have completed, my experience, and where to contact me.",
+  "summary": "While my concentration within computer science is on embedded systems and robotics, I also have explored other areas of interest such as developing games, software, web applications, and backend systems. I try to compete in extracurricular programs that allow me to apply my skills. I am currently seeking internship opportunities for the summer of 2026.",
+  "location": "Kent, OH",
+  "availability": "Looking for part or full-time work opportunities. Available for freelance work.",
+  "specialties": [
+    "Microcontroller programming",
+    "Robotics development",
+    "Backend Design and implementation",
+    "Web Development"
+  ],
+  "metrics": [
+    {
+      "label": "Years of experience",
+      "value": ""
+    },
+    {
+      "label": "Products launched",
+      "value": ""
+    },
+    {
+      "label": "Design systems led",
+      "value": ""
+    },
+    {
+      "label": "Teams supported",
+      "value": ""
+    }
+  ],
+  "ctaPrimaryLabel": "View projects",
+  "ctaPrimaryHref": "#projects",
+  "ctaSecondaryLabel": "Contact me",
+  "ctaSecondaryHref": "#contact"
+}

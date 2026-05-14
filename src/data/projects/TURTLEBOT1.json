@@ -1,0 +1,34 @@
+{
+  "order": 3,
+  "title": "MiniTurtleBot",
+  "year": "2025",
+  "featured": true,
+  "summary": "An ESP32-based mini robotics platform for experimenting with encoder-aware motion control, line following, odometry, and networked robot control on a small TurtleBot-style chassis. This is an iteration of the KSU ATR Lab's research project.",
+  "impact": "Turned a small custom robot into a flexible robotics testbed by combining hardware bring-up, web-tunable motion behaviors, and Python logging tools for repeatable movement experiments.",
+  "details": [
+    "Built out the base setup layer for motors, encoders, IR sensors, OLED, servo, IMU, and LiDAR so new behaviors could be tested without redoing low-level hardware setup each time.",
+    "Implemented movement experiments ranging from straight-line calibration and square-path driving to line following with PID-style steering, onboard pose tracking, and a lightweight Wi-Fi tuning panel.",
+    "Added Python tooling for UDP keyboard control and off-board odometry logging, making it easier to drive the robot, capture encoder telemetry, and plot trajectories for path and letter-drawing tests."
+  ],
+  "stack": [
+    "ESP32 / ESP32-S3",
+    "Arduino / C++",
+    "Python",
+    "Wi-Fi / UDP telemetry",
+    "Differential-drive odometry",
+    "IR, encoder, OLED, and LiDAR integration"
+  ],
+  "images": [
+    {
+      "src": "/project-media/MTB-02.png",
+      "alt": "MiniTurtleBot line-following concept showing a small robot reading a dark guide path with live tuning controls beside it.",
+      "caption": "Line following and live control tuning"
+    },
+    {
+      "src": "/project-media/MTB-01.png",
+      "alt": "MiniTurtleBot Initial Testing and Odometry Visualization",
+      "caption": "Initial Testing and Odometry Visualization"
+    }
+  ],
+  "sourceUrl": "https://github.com/mileskeffer/MiniTurtleBot/tree/main/MiniTurtleBot"
+}

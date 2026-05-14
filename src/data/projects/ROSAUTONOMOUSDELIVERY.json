@@ -1,0 +1,38 @@
+{
+  "order": 2,
+  "title": "ROS Autonomous Delivery",
+  "year": "2025-2026",
+  "featured": true,
+  "summary": "A ROS 2 TurtleBot3 project exploring autonomous delivery workflows through simulation, map-based goal selection, and custom robot control utilities.",
+  "impact": "Brought simulation, teleoperation, and map-driven navigation into one robotics workflow so delivery scenarios could be tested repeatedly before moving onto real hardware.",
+  "details": [
+    "Structured the workspace around TurtleBot3 simulation assets and a custom ROS 2 package for joystick teleoperation and launch-time utilities.",
+    "Added a map goal picker flow for selecting destinations from saved maps and turning them into repeatable navigation targets during testing.",
+    "Experimented with an MCP and OpenAI-powered wrapper for publishing ROS 2 messages, making higher-level robot control easier to prototype."
+  ],
+  "stack": [
+    "ROS 2",
+    "TurtleBot3",
+    "Python",
+    "Gazebo simulation",
+    "MCP / OpenAI"
+  ],
+  "images": [
+    {
+      "src": "/project-media/ROS-01.jpg",
+      "alt": "Autonomous delivery simulation view with a TurtleBot route crossing a mapped floor plan.",
+      "caption": "TurtleBot delivery simulation"
+    },
+    {
+      "src": "/project-media/ROS-02.png",
+      "alt": "Map goal picker interface with selectable waypoints and highlighted delivery targets.",
+      "caption": "Map-based goal selection"
+    },
+    {
+      "src": "/project-media/ROS-03.png",
+      "alt": "ROS control dashboard showing teleoperation controls, topic activity, and command panels.",
+      "caption": "Control and ROS messaging workflow"
+    }
+  ],
+  "sourceUrl": "https://github.com/RaiYan163/ROS_autonomous_delivery"
+}

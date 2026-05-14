@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Northstar Commerce slide two</title>
+  <desc id="desc">Product detail layout with feature storytelling and comparison modules.</desc>
+  <rect width="1200" height="760" rx="40" fill="#efe4d2" />
+  <rect x="56" y="56" width="1088" height="648" rx="30" fill="#fffaf4" />
+  <rect x="92" y="96" width="352" height="568" rx="26" fill="#f0d8b3" />
+  <rect x="478" y="96" width="574" height="170" rx="26" fill="#16383d" />
+  <rect x="478" y="296" width="274" height="176" rx="24" fill="#fff1dc" />
+  <rect x="778" y="296" width="274" height="176" rx="24" fill="#d77e33" />
+  <rect x="478" y="500" width="574" height="164" rx="24" fill="#efe4d2" />
+  <rect x="520" y="134" width="212" height="18" rx="9" fill="#fffaf4" opacity="0.72" />
+  <rect x="520" y="176" width="168" height="18" rx="9" fill="#fffaf4" opacity="0.18" />
+  <circle cx="268" cy="380" r="136" fill="#fffaf4" opacity="0.5" />
+</svg>

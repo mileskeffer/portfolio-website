@@ -1,0 +1,46 @@
+{
+  "order": 1,
+  "headline": "My Resume!",
+  "summary": "This section highlights my technical foundation in computer science with applied experience across embedded systems, IoT, and web development. Combines academic training with hands-on project work, emphasizing system-level thinking, efficient software design, and real-world hardware/software integration.",
+  "downloadFilename": "miles-resume.pdf",
+  "focusAreas": [
+    {
+      "group": "Embedded & Systems",
+      "items": [
+        "Embedded C/C++ development, especially on microcontrollers (ESP32, Raspberry Pi)",
+        "Bluetooth Low Energy (BLE) communication and data transfer",
+        "IoT system design and hardware-software integration",
+        "Linux-based system development and debugging"
+      ]
+    },
+    {
+      "group": "Software Development",
+      "items": [
+        "Full-stack web development using Node.js, JavaScript, and MySQL",
+        "Object-oriented programming in Java, C++, and Python",
+        "RESTful API design and backend architecture",
+        "Agile/SCRUM-based development workflows"
+      ]
+    },
+    {
+      "group": "Tools & Environments",
+      "items": [
+        "Version control with Git and collaborative workflows",
+        "Development across Windows, Linux, and macOS environments",
+        "Virtualization using VirtualBox and VMware",
+        "IDE proficiency (VSCode and similar toolchains)"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "program": "Bachelor of Science, Computer Science (ABET Accredited)",
+      "institution": "Kent State University (Honors College)",
+      "year": "Expected 2026"
+    }
+  ],
+  "certifications": [
+    "83MD Programming & Software Development Certification (2022)",
+    "TestOut IT Fundamentals Pro Certification (2022)"
+  ]
+}

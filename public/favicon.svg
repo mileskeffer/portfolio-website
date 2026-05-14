@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>Portfolio favicon</title>
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#1f6f78" />
+      <stop offset="100%" stop-color="#e0823b" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="url(#bg)" />
+  <path
+    d="M18 46V18h8.4l5.6 12.1L37.6 18H46v28h-6.4V29.2l-5.4 11.4H30L24.4 29.2V46H18z"
+    fill="#fffaf1"
+  />
+</svg>

@@ -1,0 +1,21 @@
+{
+  "order": 1,
+  "role": "Lead Designer Engineer",
+  "company": "Northline Studio",
+  "location": "Remote",
+  "start": "2023",
+  "end": "Present",
+  "summary": "Leading project direction for brand-forward websites and product surfaces, from concept through implementation and launch support.",
+  "highlights": [
+    "Built and documented a shared component system used across client launches.",
+    "Translated design exploration into production React and Astro implementations.",
+    "Established content-first review workflows that improved stakeholder feedback quality."
+  ],
+  "tools": [
+    "Astro",
+    "React",
+    "TypeScript",
+    "Figma",
+    "Storytelling systems"
+  ]
+}

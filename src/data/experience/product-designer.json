@@ -1,0 +1,20 @@
+{
+  "order": 3,
+  "role": "Product Designer",
+  "company": "Gridwell",
+  "location": "Brooklyn, NY",
+  "start": "2017",
+  "end": "2020",
+  "summary": "Worked across product and marketing surfaces, turning customer research and business goals into practical UI systems and launch-ready flows.",
+  "highlights": [
+    "Designed account setup, onboarding, and reporting surfaces for a B2B product.",
+    "Created shared documentation that reduced drift between design and engineering.",
+    "Supported launch campaigns with landing pages and product education content."
+  ],
+  "tools": [
+    "Product design",
+    "Information architecture",
+    "Design systems",
+    "Collaboration"
+  ]
+}

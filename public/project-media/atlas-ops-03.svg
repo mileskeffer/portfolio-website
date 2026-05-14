@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Atlas Ops slide three</title>
+  <desc id="desc">Analytics interface with KPIs, map surfaces, and performance summaries.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f2529" />
+      <stop offset="100%" stop-color="#32626a" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" rx="40" fill="url(#bg)" />
+  <rect x="60" y="60" width="1080" height="640" rx="30" fill="#102a2e" />
+  <rect x="98" y="98" width="1004" height="94" rx="26" fill="#eef6f6" opacity="0.08" />
+  <rect x="98" y="226" width="302" height="188" rx="24" fill="#f1c48e" />
+  <rect x="430" y="226" width="338" height="188" rx="24" fill="#eef6f6" />
+  <rect x="798" y="226" width="304" height="188" rx="24" fill="#1d4d55" />
+  <rect x="98" y="446" width="548" height="214" rx="24" fill="#eef6f6" />
+  <rect x="676" y="446" width="426" height="214" rx="24" fill="#f1c48e" />
+  <circle cx="934" cy="334" r="82" fill="#f6d8af" opacity="0.68" />
+  <rect x="472" y="266" width="252" height="18" rx="9" fill="#102a2e" opacity="0.22" />
+  <rect x="472" y="306" width="96" height="84" rx="18" fill="#1d4d55" />
+  <rect x="586" y="306" width="138" height="84" rx="18" fill="#dce9e9" />
+</svg>

@@ -1,0 +1,37 @@
+{
+  "order": 3,
+  "title": "ESP32 BLE File Transfer",
+  "year": "2025",
+  "featured": true,
+  "summary": "An embedded systems project implementing file transfer over Bluetooth Low Energy (BLE) using an ESP32.",
+  "impact": "Demonstrates a practical approach to transferring binary data over BLE by designing a custom packetization and reconstruction layer on top of GATT.",
+  "details": [
+    "Implemented BLE-based communication using the ESP32 acting as a GATT server to receive file data from a client device.",
+    "Designed a packetization strategy to split files into small chunks due to BLE payload size limits, then reassembled them on-device.",
+    "Addressed BLE throughput and reliability constraints by sequencing packets and managing partial transfers."
+  ],
+  "stack": [
+    "ESP32",
+    "C++ (Arduino framework)",
+    "Bluetooth Low Energy (GATT/ATT)",
+    "PlatformIO / Arduino IDE"
+  ],
+  "images": [
+    {
+      "src": "/project-media/signal-studio-01.svg",
+      "alt": "ESP32 receiving file chunks over BLE from a client device.",
+      "caption": "BLE-based file transfer architecture"
+    },
+    {
+      "src": "/project-media/signal-studio-01.svg",
+      "alt": "Chunked data transmission showing packet segmentation and reassembly.",
+      "caption": "Packetization and reassembly flow"
+    },
+    {
+      "src": "/project-media/signal-studio-01.svg",
+      "alt": "ESP32 writing received binary data to onboard storage.",
+      "caption": "Persistent storage of transferred files"
+    }
+  ],
+  "sourceUrl": "https://github.com/mileskeffer/ESP32-BLE-File-Transfer"
+}

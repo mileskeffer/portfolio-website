@@ -1,0 +1,21 @@
+{
+  "order": 2,
+  "role": "Frontend Consultant",
+  "company": "Independent",
+  "location": "New York, NY",
+  "start": "2020",
+  "end": "2023",
+  "summary": "Partnered with early-stage teams that needed senior frontend direction, interface polish, and shipping momentum without a large in-house design org.",
+  "highlights": [
+    "Scoped and delivered portfolio, SaaS, and editorial site builds.",
+    "Introduced accessibility checklists and cleaner responsive layout patterns.",
+    "Helped founders turn rough positioning into clearer web narratives."
+  ],
+  "tools": [
+    "React",
+    "Next.js",
+    "Astro",
+    "Accessibility",
+    "Design QA"
+  ]
+}
