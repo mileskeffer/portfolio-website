@@ -657,7 +657,7 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
         <section className="section-shell section-glass" id="projects">
           <div className="section-heading">
             <span className="section-kicker">Projects</span>
-            <h2>Recent Projects of mine</h2>
+            <h2>Recent Projects of Mine</h2>
           </div>
 
           <div className="project-rail-header">
@@ -792,7 +792,7 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
         <section className="section-shell section-glass contact-section" id="contact">
           <div className="section-heading">
             <span className="section-kicker">Contact</span>
-            <h2>Let&apos;s talk about building thoughtful software, robotics, and user-focused products.</h2>
+            <h2>Let&apos;s talk!</h2>
             <p className="section-intro">{portfolio.contact.blurb}</p>
           </div>
 

@@ -18,19 +18,14 @@
   ],
   "images": [
     {
-      "src": "/project-media/atlas-ops-01.svg",
-      "alt": "Atlas Ops operations dashboard showing charts and route activity.",
-      "caption": "Operations dashboard overview"
+      "src": "/project-media/ASL-T-1.png",
+      "alt": "aslTranslate application interface.",
+      "caption": "Main application view"
     },
     {
-      "src": "/project-media/atlas-ops-02.svg",
-      "alt": "Atlas Ops scheduling view with task cards and shipment status.",
-      "caption": "Scheduling and task management"
-    },
-    {
-      "src": "/project-media/atlas-ops-03.svg",
-      "alt": "Atlas Ops analytics panel with KPI summaries and maps.",
-      "caption": "Analytics and performance tracking"
+      "src": "/project-media/ASL-T-2.png",
+      "alt": "aslTranslate application interface.",
+      "caption": "Selected word signing details"
     }
   ],
   "devpostURL": "https://devpost.com/software/asl-translator-6shtz4",

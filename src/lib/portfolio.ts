@@ -4,7 +4,7 @@ function sortByOrder<T extends { data: { order: number } }>(entries: T[]) {
   return [...entries].sort((left, right) => left.data.order - right.data.order);
 }
 
-function firstEntry<T extends { data: unknown }>(entries: T[], collectionName: string) {
+function firstEntry<T extends { data: unknown }>(entries: T[], collectionName: string): T['data'] {
   const entry = entries[0];
 
   if (!entry) {
