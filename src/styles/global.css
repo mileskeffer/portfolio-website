@@ -157,10 +157,11 @@ a {
   justify-content: flex-end;
 }
 
-.nav-link {
-  padding: 0.65rem 0.9rem;
-  border-radius: var(--radius-sm);
-  color: var(--text-soft);
+  .nav-link {
+    flex: 0 0 auto;
+    padding: 0.65rem 0.9rem;
+    border-radius: var(--radius-sm);
+    color: var(--text-soft);
   font-size: 0.92rem;
 }
 
@@ -1292,23 +1293,48 @@ a {
 
 @media (max-width: 980px) {
   .topbar {
-    flex-direction: column;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
   }
 
   .topbar-actions {
-    flex-direction: column;
-    align-items: stretch;
+    display: contents;
   }
 
   .section-nav {
     justify-content: flex-start;
+    flex-wrap: nowrap;
     overflow-x: auto;
-    padding-bottom: 0.2rem;
+    scrollbar-width: none;
+  }
+
+  .section-nav::-webkit-scrollbar {
+    display: none;
   }
 
   .theme-toggle {
     justify-content: center;
+    width: 2.55rem;
+    min-width: 2.55rem;
+    min-height: 2.55rem;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .theme-toggle-icon {
+    width: 100%;
+    min-height: 100%;
+    border-radius: 50%;
+    background: transparent;
+    font-size: 0.62rem;
+    letter-spacing: 0;
+  }
+
+  .theme-toggle-copy {
+    display: none;
   }
 
   .hero-copy,
@@ -1354,9 +1380,50 @@ a {
     padding: 0.85rem 0.85rem 3rem;
   }
 
-  .section-shell,
   .topbar {
+    top: 0.55rem;
+    margin-bottom: 0.85rem;
+    padding: 0.55rem;
+    border-radius: 18px;
+  }
+
+  .section-shell {
     border-radius: 22px;
+  }
+
+  .brand {
+    gap: 0.65rem;
+  }
+
+  .brand-mark {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1rem;
+  }
+
+  .brand-copy strong {
+    font-size: 0.9rem;
+  }
+
+  .section-nav {
+    gap: 0.35rem;
+    padding-bottom: 0;
+  }
+
+  .nav-link {
+    flex: 0 0 auto;
+    padding: 0.48rem 0.68rem;
+    font-size: 0.82rem;
+  }
+
+  .theme-toggle {
+    width: 2.35rem;
+    min-width: 2.35rem;
+    min-height: 2.35rem;
+  }
+
+  .theme-toggle-icon {
+    font-size: 0.58rem;
   }
 
   .stats-grid {
@@ -1364,7 +1431,7 @@ a {
   }
 
   .brand-copy span {
-    white-space: normal;
+    white-space: nowrap;
   }
 
   .section-heading h1 {
