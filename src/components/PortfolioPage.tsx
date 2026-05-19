@@ -606,7 +606,7 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
       <main className="main-content">
         <section className="section-shell section-glass hero-section" id="about">
           <div className="section-heading">
-            <span className="section-kicker">About</span>
+            <span className="section-kicker">About Miles</span>
             <h1>{portfolio.about.tagline}</h1>
             <p className="section-intro">{portfolio.about.intro}</p>
           </div>

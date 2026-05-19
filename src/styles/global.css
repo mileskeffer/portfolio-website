@@ -1405,6 +1405,10 @@ a {
     font-size: 0.9rem;
   }
 
+  .brand-copy {
+    display: none;
+  }
+
   .section-nav {
     gap: 0.35rem;
     padding-bottom: 0;
@@ -1428,10 +1432,6 @@ a {
 
   .stats-grid {
     grid-template-columns: 1fr;
-  }
-
-  .brand-copy span {
-    white-space: nowrap;
   }
 
   .section-heading h1 {
