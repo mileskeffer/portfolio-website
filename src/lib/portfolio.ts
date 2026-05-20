@@ -86,6 +86,7 @@ export function buildResumeDownloadText(portfolio: FullPortfolioContent) {
     .map((item) => `${item.program} | ${item.institution} | ${item.year}`)
     .join('\n');
 
+  const relevantCoursework = portfolio.resume.relevantCoursework.map((course) => `- ${course}`).join('\n');
   const certifications = portfolio.resume.certifications.map((item) => `- ${item}`).join('\n');
   const experience = portfolio.experience
     .map(
@@ -113,6 +114,9 @@ export function buildResumeDownloadText(portfolio: FullPortfolioContent) {
     '',
     'EDUCATION',
     education,
+    '',
+    'RELEVANT COURSEWORK',
+    relevantCoursework,
     '',
     'CERTIFICATIONS',
     certifications

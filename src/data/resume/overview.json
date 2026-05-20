@@ -1,7 +1,7 @@
 {
   "order": 1,
   "headline": "My Resume!",
-  "summary": "This section highlights my foundation in computer science with applied experience across embedded systems, IoT, and web development. Combines academic training with hands-on project work, emphasizing system-level thinking, efficient software design, and real-world hardware/software integration.",
+  "summary": "This section highlights my foundation in computer science with applied experience across embedded systems, IoT, and web development. It combines academic training with hands-on project work, emphasizing system-level thinking, efficient software design, and real-world hardware/software integration.",
   "downloadFilename": "miles-resume.pdf",
   "focusAreas": [
     {
@@ -38,6 +38,18 @@
       "institution": "Kent State University (Honors College)",
       "year": "Expected 2026"
     }
+  ],
+  "relevantCoursework": [
+    "Algorithms Design",
+    "Object-Oriented Programming",
+    "Operating Systems",
+    "Database Systems",
+    "Software Engineering",
+    "Computer Communications Networks",
+    "Embedded Systems",
+    "Robotics Development",
+    "Internet of Things",
+    "Descrete Structures"
   ],
   "certifications": [
     "83MD Programming & Software Development Certification (2022)",

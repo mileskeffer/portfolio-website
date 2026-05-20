@@ -774,6 +774,15 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
               </section>
             </div>
 
+            <section className="resume-block" aria-labelledby="resume-coursework-heading">
+              <h3 id="resume-coursework-heading">Relevant Coursework</h3>
+              <ul className="resume-coursework-list">
+                {portfolio.resume.relevantCoursework.map((course) => (
+                  <li key={course}>{course}</li>
+                ))}
+              </ul>
+            </section>
+
             <section className="resume-block resume-download-row" aria-labelledby="resume-download-heading">
               <div className="resume-download-copy">
                 <h3 id="resume-download-heading">Want the full resume?</h3>

@@ -115,6 +115,7 @@ const resume = defineCollection({
         year: z.string()
       })
     ),
+    relevantCoursework: z.array(z.string()),
     certifications: z.array(z.string())
   })
 });
