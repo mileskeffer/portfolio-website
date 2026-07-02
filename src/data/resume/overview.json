@@ -54,5 +54,23 @@
   "certifications": [
     "83MD Programming & Software Development Certification (2022)",
     "TestOut IT Fundamentals Pro Certification (2022)"
+  ],
+  "volunteerWork": [
+    {
+      "title": "Cleveland GiveCamp Volunteer",
+      "organization": "Autism Society of Greater Cleveland",
+      "organizationUrl": "https://autismakron.org/",
+      "period": "2025",
+      "summary": "Utilized web development skills to modify their wordpress site to add missing pages and link documents."
+    }
+  ],
+  "extracurriculars": [
+    {
+      "title": "HacKSU Member",
+      "organization": "HacKSU Coding Club",
+      "organizationUrl": "https://hacksu.com/",
+      "period": "2024 - Present",
+      "summary": "Participates in club lectures and discussions which explore popular technologies, and meets with industry professionals."
+    }
   ]
 }

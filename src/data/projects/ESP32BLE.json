@@ -1,5 +1,6 @@
 {
   "order": 3,
+  "category": "robotics-embedded",
   "title": "ESP32 BLE File Transfer",
   "year": "2025",
   "featured": true,

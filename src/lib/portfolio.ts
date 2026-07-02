@@ -88,6 +88,18 @@ export function buildResumeDownloadText(portfolio: FullPortfolioContent) {
 
   const relevantCoursework = portfolio.resume.relevantCoursework.map((course) => `- ${course}`).join('\n');
   const certifications = portfolio.resume.certifications.map((item) => `- ${item}`).join('\n');
+  const volunteerWork = portfolio.resume.volunteerWork
+    .map(
+      (item) =>
+        `${item.title} | ${item.organization}${item.organizationUrl ? ` (${item.organizationUrl})` : ''} | ${item.period}\n${item.summary}`
+    )
+    .join('\n\n');
+  const extracurriculars = portfolio.resume.extracurriculars
+    .map(
+      (item) =>
+        `${item.title} | ${item.organization}${item.organizationUrl ? ` (${item.organizationUrl})` : ''} | ${item.period}\n${item.summary}`
+    )
+    .join('\n\n');
   const experience = portfolio.experience
     .map(
       (item) =>
@@ -119,7 +131,9 @@ export function buildResumeDownloadText(portfolio: FullPortfolioContent) {
     relevantCoursework,
     '',
     'CERTIFICATIONS',
-    certifications
+    certifications,
+    ...(volunteerWork ? ['', 'VOLUNTEER WORK', volunteerWork] : []),
+    ...(extracurriculars ? ['', 'EXTRACURRICULARS', extracurriculars] : [])
   ].join('\n');
 }
 
