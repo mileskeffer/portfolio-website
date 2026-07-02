@@ -32,6 +32,7 @@ const projects = defineCollection({
   schema: z
     .object({
       order: z.number(),
+      category: z.enum(['full-stack', 'robotics-embedded', 'misc']),
       title: z.string(),
       year: z.string(),
       featured: z.boolean(),
@@ -66,6 +67,7 @@ const projects = defineCollection({
     })
     .transform((data) => ({
       order: data.order,
+      category: data.category,
       title: data.title,
       year: data.year,
       featured: data.featured,
@@ -95,6 +97,14 @@ const experience = defineCollection({
   })
 });
 
+const resumeActivitySchema = z.object({
+  title: z.string(),
+  organization: z.string(),
+  organizationUrl: z.string().url().optional(),
+  period: z.string(),
+  summary: z.string()
+});
+
 const resume = defineCollection({
   loader: glob({ pattern: '*.json', base: './src/data/resume' }),
   schema: z.object({
@@ -116,7 +126,9 @@ const resume = defineCollection({
       })
     ),
     relevantCoursework: z.array(z.string()),
-    certifications: z.array(z.string())
+    certifications: z.array(z.string()),
+    volunteerWork: z.array(resumeActivitySchema).default([]),
+    extracurriculars: z.array(resumeActivitySchema).default([])
   })
 });
 

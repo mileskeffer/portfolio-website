@@ -35,6 +35,46 @@ const navItems = [
 
 const themeStorageKey = 'portfolio-theme';
 
+const projectGroups: Array<{
+  description: string;
+  id: ProjectItem['category'];
+  title: string;
+}> = [
+  {
+    id: 'full-stack',
+    title: 'Full Stack Projects',
+    description: 'Web applications, data-backed platforms, APIs, and end-to-end product work.'
+  },
+  {
+    id: 'robotics-embedded',
+    title: 'Robotics + Embedded',
+    description: 'Robotics, connected devices, firmware, sensing, simulation, and autonomous systems.'
+  },
+  {
+    id: 'misc',
+    title: 'Misc Projects',
+    description: 'Games, experiments, hackathon builds, and projects that cross disciplines.'
+  }
+];
+
+function getProjectCategory(project: ProjectItem): ProjectItem['category'] {
+  if (project.category) {
+    return project.category;
+  }
+
+  const searchableProjectText = `${project.title} ${project.stack.join(' ')}`.toLowerCase();
+
+  if (/pandata|asltranslate|flask|express|sqlalchemy|mysql/.test(searchableProjectText)) {
+    return 'full-stack';
+  }
+
+  if (/robot|turtlebot|esp32|arduino|ros 2|embedded|bluetooth low energy/.test(searchableProjectText)) {
+    return 'robotics-embedded';
+  }
+
+  return 'misc';
+}
+
 function ProjectCard({ project }: { project: ProjectItem }) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -105,7 +145,7 @@ function ProjectCard({ project }: { project: ProjectItem }) {
   }, [imageCount, isLightboxOpen]);
 
   return (
-    <article className="project-card" key={project.id}>
+    <article className="project-card" key={project.id} role="listitem">
       <div className="project-media-column">
         <div className="project-carousel">
           <div className="project-image-frame">
@@ -305,21 +345,142 @@ function ProjectCard({ project }: { project: ProjectItem }) {
   );
 }
 
-export default function PortfolioPage({ portfolio, contactDetails }: Props) {
-  const [themeMode, setThemeMode] = useState<ThemeMode | null>(null);
-  const [activeSection, setActiveSection] = useState<(typeof navItems)[number]['id']>('about');
-  const [isProjectRailDragging, setIsProjectRailDragging] = useState(false);
-  const orbParallaxFrameRef = useRef<number | null>(null);
-  const projectRailRef = useRef<HTMLDivElement | null>(null);
-  const themeRepaintFrameRef = useRef<number[]>([]);
-  const projectRailDragStateRef = useRef<{
+function ProjectRail({
+  description,
+  id,
+  projects,
+  title
+}: {
+  description: string;
+  id: string;
+  projects: ProjectItem[];
+  title: string;
+}) {
+  const [isDragging, setIsDragging] = useState(false);
+  const railRef = useRef<HTMLDivElement | null>(null);
+  const dragStateRef = useRef<{
     moved: boolean;
     pointerId: number;
     startScrollLeft: number;
     startX: number;
   } | null>(null);
-  const projectRailSuppressClickRef = useRef(false);
+  const suppressClickRef = useRef(false);
+
+  function handlePointerDown(event: ReactPointerEvent<HTMLDivElement>) {
+    if (event.button !== 0) {
+      return;
+    }
+
+    const target = event.target instanceof HTMLElement ? event.target : null;
+
+    if (target?.closest('a, button, input, textarea, select, label')) {
+      return;
+    }
+
+    const rail = railRef.current;
+
+    if (!rail || rail.scrollWidth <= rail.clientWidth) {
+      return;
+    }
+
+    dragStateRef.current = {
+      moved: false,
+      pointerId: event.pointerId,
+      startScrollLeft: rail.scrollLeft,
+      startX: event.clientX
+    };
+
+    suppressClickRef.current = false;
+    rail.setPointerCapture(event.pointerId);
+    setIsDragging(true);
+  }
+
+  function handlePointerMove(event: ReactPointerEvent<HTMLDivElement>) {
+    const rail = railRef.current;
+    const dragState = dragStateRef.current;
+
+    if (!rail || !dragState || dragState.pointerId !== event.pointerId) {
+      return;
+    }
+
+    const deltaX = event.clientX - dragState.startX;
+
+    if (!dragState.moved && Math.abs(deltaX) > 6) {
+      dragState.moved = true;
+      suppressClickRef.current = true;
+    }
+
+    if (!dragState.moved) {
+      return;
+    }
+
+    event.preventDefault();
+    rail.scrollLeft = dragState.startScrollLeft - deltaX;
+  }
+
+  function finishDrag(pointerId: number) {
+    const rail = railRef.current;
+    const dragState = dragStateRef.current;
+
+    if (!rail || !dragState || dragState.pointerId !== pointerId) {
+      return;
+    }
+
+    if (rail.hasPointerCapture(pointerId)) {
+      rail.releasePointerCapture(pointerId);
+    }
+
+    dragStateRef.current = null;
+    setIsDragging(false);
+  }
+
+  function handleClickCapture(event: ReactMouseEvent<HTMLDivElement>) {
+    if (!suppressClickRef.current) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+    suppressClickRef.current = false;
+  }
+
+  return (
+    <section className="project-group" aria-labelledby={`${id}-projects-heading`}>
+      <div className="project-rail-header">
+        <div>
+          <h3 id={`${id}-projects-heading`}>{title}</h3>
+          <p className="project-rail-copy">{description}</p>
+        </div>
+        <span className="project-rail-note">Click and drag sideways to browse</span>
+      </div>
+
+      <div
+        aria-label={`${title} showcase`}
+        className={`project-rail ${isDragging ? 'is-dragging' : ''}`}
+        onClickCapture={handleClickCapture}
+        onPointerCancel={(event) => finishDrag(event.pointerId)}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={(event) => finishDrag(event.pointerId)}
+        ref={railRef}
+        role="list"
+      >
+        {projects.map((project) => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export default function PortfolioPage({ portfolio, contactDetails }: Props) {
+  const [themeMode, setThemeMode] = useState<ThemeMode | null>(null);
+  const [activeSection, setActiveSection] = useState<(typeof navItems)[number]['id']>('about');
+  const orbParallaxFrameRef = useRef<number | null>(null);
+  const themeRepaintFrameRef = useRef<number[]>([]);
   const brandInitial = portfolio.about.name.trim().charAt(0).toUpperCase() || 'P';
+  const volunteerWork = portfolio.resume.volunteerWork ?? [];
+  const extracurriculars = portfolio.resume.extracurriculars ?? [];
 
   useEffect(() => {
     if (typeof document === 'undefined') {
@@ -475,92 +636,6 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
     }
   }
 
-  function handleProjectRailPointerDown(event: ReactPointerEvent<HTMLDivElement>) {
-    if (event.button !== 0) {
-      return;
-    }
-
-    const target = event.target instanceof HTMLElement ? event.target : null;
-
-    if (target?.closest('a, button, input, textarea, select, label')) {
-      return;
-    }
-
-    const rail = projectRailRef.current;
-
-    if (!rail || rail.scrollWidth <= rail.clientWidth) {
-      return;
-    }
-
-    projectRailDragStateRef.current = {
-      moved: false,
-      pointerId: event.pointerId,
-      startScrollLeft: rail.scrollLeft,
-      startX: event.clientX
-    };
-
-    projectRailSuppressClickRef.current = false;
-    rail.setPointerCapture(event.pointerId);
-    setIsProjectRailDragging(true);
-  }
-
-  function handleProjectRailPointerMove(event: ReactPointerEvent<HTMLDivElement>) {
-    const rail = projectRailRef.current;
-    const dragState = projectRailDragStateRef.current;
-
-    if (!rail || !dragState || dragState.pointerId !== event.pointerId) {
-      return;
-    }
-
-    const deltaX = event.clientX - dragState.startX;
-
-    if (!dragState.moved && Math.abs(deltaX) > 6) {
-      dragState.moved = true;
-      projectRailSuppressClickRef.current = true;
-    }
-
-    if (!dragState.moved) {
-      return;
-    }
-
-    event.preventDefault();
-    rail.scrollLeft = dragState.startScrollLeft - deltaX;
-  }
-
-  function finishProjectRailDrag(pointerId: number) {
-    const rail = projectRailRef.current;
-    const dragState = projectRailDragStateRef.current;
-
-    if (!rail || !dragState || dragState.pointerId !== pointerId) {
-      return;
-    }
-
-    if (rail.hasPointerCapture(pointerId)) {
-      rail.releasePointerCapture(pointerId);
-    }
-
-    projectRailDragStateRef.current = null;
-    setIsProjectRailDragging(false);
-  }
-
-  function handleProjectRailPointerUp(event: ReactPointerEvent<HTMLDivElement>) {
-    finishProjectRailDrag(event.pointerId);
-  }
-
-  function handleProjectRailPointerCancel(event: ReactPointerEvent<HTMLDivElement>) {
-    finishProjectRailDrag(event.pointerId);
-  }
-
-  function handleProjectRailClickCapture(event: ReactMouseEvent<HTMLDivElement>) {
-    if (!projectRailSuppressClickRef.current) {
-      return;
-    }
-
-    event.preventDefault();
-    event.stopPropagation();
-    projectRailSuppressClickRef.current = false;
-  }
-
   return (
     <div className="page-shell">
       <header className="topbar">
@@ -658,29 +733,17 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
           <div className="section-heading">
             <span className="section-kicker">Projects</span>
             <h2>Recent Projects of Mine</h2>
-          </div>
-
-          <div className="project-rail-header">
-            <p className="project-rail-copy">
+            <p className="section-intro">
               These projects have been completed as part of my coursework and personal development in computer science, with a focus on embedded systems, IoT, and full-stack development.
             </p>
-            <span className="project-rail-note">Click and drag sideways to browse</span>
           </div>
 
-          <div
-            className={`project-rail ${isProjectRailDragging ? 'is-dragging' : ''}`}
-            onClickCapture={handleProjectRailClickCapture}
-            onPointerCancel={handleProjectRailPointerCancel}
-            onPointerDown={handleProjectRailPointerDown}
-            onPointerMove={handleProjectRailPointerMove}
-            onPointerUp={handleProjectRailPointerUp}
-            ref={projectRailRef}
-            role="list"
-            aria-label="Project showcase"
-          >
-            {portfolio.projects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
+          <div className="project-groups">
+            {projectGroups.map((group) => {
+              const projects = portfolio.projects.filter((project) => getProjectCategory(project) === group.id);
+
+              return projects.length ? <ProjectRail key={group.id} {...group} projects={projects} /> : null;
+            })}
           </div>
         </section>
 
@@ -782,6 +845,72 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
                 ))}
               </ul>
             </section>
+
+            {volunteerWork.length || extracurriculars.length ? (
+              <section className="resume-block" aria-labelledby="resume-community-heading">
+                <h3 id="resume-community-heading">Volunteer Work &amp; Extracurriculars</h3>
+
+                <div className="resume-activity-grid">
+                  {volunteerWork.length ? (
+                    <div className="resume-group">
+                      <h4>Volunteer Work</h4>
+                      <ul className="resume-activity-list">
+                        {volunteerWork.map((activity) => (
+                          <li key={`${activity.title}-${activity.organization}-${activity.period}`}>
+                            <div className="resume-activity-heading">
+                              <strong>{activity.title}</strong>
+                              <span>{activity.period}</span>
+                            </div>
+                            {activity.organizationUrl ? (
+                              <a
+                                className="resume-activity-organization"
+                                href={activity.organizationUrl}
+                                rel="noreferrer"
+                                target="_blank"
+                              >
+                                {activity.organization}
+                              </a>
+                            ) : (
+                              <span className="resume-activity-organization">{activity.organization}</span>
+                            )}
+                            <p>{activity.summary}</p>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+
+                  {extracurriculars.length ? (
+                    <div className="resume-group">
+                      <h4>Extracurriculars</h4>
+                      <ul className="resume-activity-list">
+                        {extracurriculars.map((activity) => (
+                          <li key={`${activity.title}-${activity.organization}-${activity.period}`}>
+                            <div className="resume-activity-heading">
+                              <strong>{activity.title}</strong>
+                              <span>{activity.period}</span>
+                            </div>
+                            {activity.organizationUrl ? (
+                              <a
+                                className="resume-activity-organization"
+                                href={activity.organizationUrl}
+                                rel="noreferrer"
+                                target="_blank"
+                              >
+                                {activity.organization}
+                              </a>
+                            ) : (
+                              <span className="resume-activity-organization">{activity.organization}</span>
+                            )}
+                            <p>{activity.summary}</p>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                </div>
+              </section>
+            ) : null}
 
             <section className="resume-block resume-download-row" aria-labelledby="resume-download-heading">
               <div className="resume-download-copy">
