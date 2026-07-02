@@ -236,6 +236,7 @@ a {
 }
 
 .section-shell {
+  --led-animation-delay: 0s;
   position: relative;
   overflow: hidden;
   padding: clamp(1.4rem, 2vw, 2rem);
@@ -257,22 +258,39 @@ a {
   border-radius: inherit;
   background: linear-gradient(
     90deg,
-    #ff1744 0%,
-    #ff8a00 12.5%,
-    #ffee00 25%,
-    #39ff14 37.5%,
-    #00e5ff 50%,
-    #2979ff 62.5%,
-    #9c27ff 75%,
-    #ff2bd6 87.5%,
-    #ff1744 100%
+    #67e8f9 0%,
+    #22d3ee 12.5%,
+    #38bdf8 25%,
+    #0ea5e9 37.5%,
+    #3b82f6 50%,
+    #2563eb 62.5%,
+    #4f46e5 75%,
+    #60a5fa 87.5%,
+    #67e8f9 100%
   );
   background-size: 200% 100%;
   box-shadow:
     0 0 7px rgba(255, 255, 255, 0.3),
     0 2px 12px rgba(46, 178, 255, 0.22);
-  animation: section-led-flow 3.8s linear infinite;
+  animation: section-led-flow 9s linear infinite;
+  animation-delay: var(--led-animation-delay);
   pointer-events: none;
+}
+
+#about {
+  --led-animation-delay: -0.8s;
+}
+
+#projects {
+  --led-animation-delay: -3.1s;
+}
+
+#resume {
+  --led-animation-delay: -5.4s;
+}
+
+#contact {
+  --led-animation-delay: -7.7s;
 }
 
 .section-shell.section-glass {
