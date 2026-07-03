@@ -47,7 +47,7 @@ const projectGroups: Array<{
   },
   {
     id: 'robotics-embedded',
-    title: 'Robotics + Embedded',
+    title: 'Robotics and Embedded Projects',
     description: 'Robotics, connected devices, firmware, sensing, simulation, and autonomous systems.'
   },
   {
@@ -680,8 +680,7 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
 
       <main className="main-content">
         <section className="section-shell section-glass hero-section" id="about">
-          <div className="section-heading">
-            <span className="section-kicker">About Miles</span>
+          <div className="section-heading hero-heading">
             <h1>{portfolio.about.tagline}</h1>
             <p className="section-intro">{portfolio.about.intro}</p>
           </div>
@@ -914,7 +913,7 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
 
             <section className="resume-block resume-download-row" aria-labelledby="resume-download-heading">
               <div className="resume-download-copy">
-                <h3 id="resume-download-heading">Want the full resume?</h3>
+                <h3 id="resume-download-heading">Want the PDF?</h3>
                 <p>Contact me and let me know you&apos;d like a copy. I&apos;m happy to send over the latest version.</p>
               </div>
 

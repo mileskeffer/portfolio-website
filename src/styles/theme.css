@@ -27,7 +27,7 @@
   --surface: rgba(10, 20, 36, 0.66);
   --surface-strong: rgba(26, 42, 67, 0.58);
   --glass-surface: rgba(11, 24, 43, 0.58);
-  --card-surface: rgba(15, 31, 54, 0.95);
+  --card-surface: rgba(25, 54, 88, 0.4);
   --control-surface: rgba(19, 40, 71, 0.96);
   --project-image-bg: #12233b;
   --border: rgba(157, 201, 255, 0.26);
@@ -87,7 +87,7 @@
   --surface: rgba(246, 249, 255, 0.68);
   --surface-strong: rgba(251, 253, 255, 0.72);
   --glass-surface: rgba(247, 251, 255, 0.64);
-  --card-surface: rgba(250, 253, 255, 0.97);
+  --card-surface: rgba(252, 254, 255, 0.7);
   --control-surface: rgba(239, 247, 255, 0.98);
   --project-image-bg: #dbe7f4;
   --border: rgba(74, 114, 184, 0.2);

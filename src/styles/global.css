@@ -322,6 +322,13 @@ a {
   margin-bottom: 1.5rem;
 }
 
+.hero-heading {
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 1.25rem;
+  text-align: center;
+}
+
 .section-kicker,
 .eyebrow,
 .aside-label {
@@ -398,6 +405,22 @@ a {
   padding: 1.5rem;
 }
 
+.hero-grid {
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(155deg, var(--glass-card-tint), var(--glass-card-tint-alt)),
+    var(--card-surface);
+}
+
+.hero-grid .hero-card {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
 .hero-copy {
   grid-column: span 8;
 }
@@ -419,6 +442,10 @@ a {
   align-content: start;
 }
 
+.hero-grid .hero-aside {
+  border-left: 1px solid var(--border);
+}
+
 .aside-block p {
   margin: 0;
   line-height: 1.6;
@@ -438,10 +465,26 @@ a {
 }
 
 .specialty-list li {
-  padding: 0.8rem 0.95rem;
-  border-radius: 14px;
-  background: var(--accent-soft);
-  color: var(--accent-strong);
+  position: relative;
+  padding: 0.6rem 0 0.6rem 1.1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-soft);
+}
+
+.specialty-list li:last-child {
+  border-bottom: 0;
+}
+
+.specialty-list li::before {
+  content: "";
+  position: absolute;
+  top: 1.15rem;
+  left: 0;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: var(--accent-strong);
+  box-shadow: 0 0 8px var(--accent-soft);
 }
 
 .action-row,
@@ -454,6 +497,42 @@ a {
 
 .action-row {
   margin-top: 1.4rem;
+}
+
+.hero-copy .action-row {
+  justify-content: center;
+}
+
+.hero-copy .button {
+  position: relative;
+  min-width: 9.5rem;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(2, 6, 23, 0.16);
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.hero-copy .button:hover,
+.hero-copy .button:focus-visible {
+  transform: translateY(-3px) scale(1.025);
+  box-shadow:
+    0 12px 28px rgba(2, 6, 23, 0.24),
+    0 0 18px var(--accent-soft);
+}
+
+.hero-copy .button:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 4px 10px rgba(2, 6, 23, 0.2);
+  transition-duration: 80ms;
+}
+
+.hero-copy .button:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
 }
 
 .button {
@@ -572,12 +651,22 @@ a {
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
-  padding: 0.6rem 0.9rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: var(--status-bg);
+  padding: 0.2rem 0;
   color: var(--text-faint);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
+  opacity: 0.58;
+  transition:
+    color 180ms ease,
+    opacity 180ms ease,
+    text-shadow 180ms ease;
+}
+
+.project-rail-header:hover .project-rail-note,
+.project-group:has(.project-card:hover) .project-rail-note,
+.project-group:has(.project-rail.is-dragging) .project-rail-note {
+  color: #fff;
+  opacity: 0.92;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.55);
 }
 
 .project-rail {
@@ -1528,6 +1617,11 @@ a.resume-activity-organization:focus-visible {
   .hero-aside,
   .contact-grid .detail-card {
     grid-column: span 12;
+  }
+
+  .hero-grid .hero-aside {
+    border-top: 1px solid var(--border);
+    border-left: 0;
   }
 
   .stats-grid {
