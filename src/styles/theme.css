@@ -60,7 +60,7 @@
   --page-glow-secondary: rgba(79, 70, 229, 0.52);
   --page-glow-tertiary: rgba(59, 130, 246, 0.5);
   --page-glow-quaternary: rgba(14, 165, 233, 0.44);
-  --grid-line: rgba(167, 184, 209, 0.1);
+  --grid-line: rgba(186, 215, 255, 0.14);
   --hero-orb: rgba(46, 178, 255, 0.26);
   --verification-gradient-start: rgba(46, 178, 255, 0.18);
   --verification-gradient-end: rgba(34, 211, 238, 0.16);
@@ -117,7 +117,7 @@
   --page-glow-secondary: rgba(79, 70, 229, 0.28);
   --page-glow-tertiary: rgba(37, 99, 235, 0.27);
   --page-glow-quaternary: rgba(14, 165, 233, 0.28);
-  --grid-line: rgba(59, 130, 246, 0.06);
+  --grid-line: rgba(37, 99, 235, 0.085);
   --hero-orb: rgba(2, 132, 255, 0.2);
   --verification-gradient-start: rgba(2, 132, 255, 0.1);
   --verification-gradient-end: rgba(6, 182, 212, 0.1);

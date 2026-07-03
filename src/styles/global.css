@@ -31,7 +31,11 @@ body::before {
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 72px 72px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.35), transparent 75%);
+  background-position:
+    0 var(--grid-scroll-y, 0px),
+    0 var(--grid-scroll-y, 0px);
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 82%);
+  will-change: background-position;
   pointer-events: none;
 }
 
