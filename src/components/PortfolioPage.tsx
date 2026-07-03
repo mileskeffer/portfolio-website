@@ -542,6 +542,7 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
       if (reducedMotionQuery.matches) {
         rootStyle.setProperty('--orb-parallax-x', '0px');
         rootStyle.setProperty('--orb-parallax-y', '0px');
+        rootStyle.setProperty('--grid-scroll-y', '0px');
         return;
       }
 
@@ -554,9 +555,11 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
         Math.min(maxHorizontalDrift, scrollX * -0.04 + scrollY * 0.02)
       );
       const verticalDrift = -Math.min(scrollY * 0.14, maxVerticalDrift);
+      const gridScrollY = scrollY * -0.08;
 
       rootStyle.setProperty('--orb-parallax-x', `${Math.round(horizontalDrift)}px`);
       rootStyle.setProperty('--orb-parallax-y', `${Math.round(verticalDrift)}px`);
+      rootStyle.setProperty('--grid-scroll-y', `${Math.round(gridScrollY)}px`);
     };
 
     const requestParallaxUpdate = () => {
@@ -587,6 +590,7 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
       reducedMotionQuery.removeEventListener('change', handleMotionPreferenceChange);
       rootStyle.removeProperty('--orb-parallax-x');
       rootStyle.removeProperty('--orb-parallax-y');
+      rootStyle.removeProperty('--grid-scroll-y');
     };
   }, []);
 
