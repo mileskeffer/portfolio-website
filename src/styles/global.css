@@ -427,16 +427,30 @@ a {
 
 .hero-copy {
   grid-column: span 8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 4vw, 3rem);
 }
 
-.hero-copy h2 {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  margin-bottom: 1rem;
+.hero-copy > .eyebrow {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 1.75rem;
+  font-size: 1.05rem;
+  font-style: italic;
+  text-align: center;
 }
 
 .hero-copy p {
   font-size: 1rem;
   line-height: 1.75;
+}
+
+.hero-copy .hero-summary {
+  max-width: 46rem;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .hero-aside {
@@ -505,6 +519,7 @@ a {
 
 .hero-copy .action-row {
   justify-content: center;
+  margin-top: 2rem;
 }
 
 .hero-copy .button {

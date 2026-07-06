@@ -691,9 +691,8 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
 
           <div className="hero-grid">
             <article className="hero-card hero-copy">
-              <p className="eyebrow">Based in {portfolio.about.location}</p>
-              <h2>{portfolio.about.role}</h2>
-              <p>{portfolio.about.summary}</p>
+              <p className="eyebrow">Exploring where hardware meets software</p>
+              <p className="hero-summary">{portfolio.about.summary}</p>
 
               <div className="action-row">
                 <a className="button button-primary" href={portfolio.about.ctaPrimaryHref}>
