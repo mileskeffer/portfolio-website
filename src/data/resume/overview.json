@@ -1,7 +1,7 @@
 {
   "order": 1,
   "headline": "My Resume!",
-  "summary": "This section highlights my foundation in computer science with applied experience across embedded systems, IoT, and web development. It combines academic training with hands-on project work, emphasizing system-level thinking, efficient software design, and real-world hardware/software integration.",
+  "summary": "I've worked on embedded devices, robots, web applications, and miscellaneous programs through both coursework and personal projects. That work has taught me how to write clear software, troubleshoot hardware, and bring the two together.",
   "downloadFilename": "miles-resume.pdf",
   "focusAreas": [
     {
