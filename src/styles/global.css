@@ -656,9 +656,9 @@ a {
 
 .project-group h3 {
   margin: 0 0 0.45rem;
-  font-family: var(--heading-font);
+  font-family: var(--display-font);
   font-size: clamp(1.35rem, 2.5vw, 1.8rem);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
 }
 
 .project-rail-header {
