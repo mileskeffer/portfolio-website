@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap');
 
 /*
   Portfolio theme controls
@@ -9,15 +9,19 @@
   color-scheme: dark;
 
   /* Typography */
-  --heading-font: "Space Grotesk", "Inter", "Segoe UI Variable Display", "Segoe UI", sans-serif;
-  --body-font: "Manrope", "Inter", "Segoe UI Variable Text", "Segoe UI", sans-serif;
+  --display-font: "Syne", "Plus Jakarta Sans", "Segoe UI Variable Display", sans-serif;
+  --heading-font: "Plus Jakarta Sans", "Segoe UI Variable Display", "Segoe UI", sans-serif;
+  --body-font: "Plus Jakarta Sans", "Segoe UI Variable Text", "Segoe UI", sans-serif;
 
   /* Layout tokens */
   --max-width: 1180px;
-  --radius-lg: 28px;
-  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-md: 14px;
   --radius-sm: 999px;
-  --shadow: 0 34px 100px rgba(2, 6, 23, 0.52);
+  --shadow: 0 24px 72px rgba(2, 6, 23, 0.38);
+  --card-shadow: 0 14px 34px rgba(2, 6, 23, 0.24);
+  --card-shadow-hover: 0 18px 42px rgba(2, 6, 23, 0.3);
+  --card-border-hover: rgba(125, 220, 255, 0.28);
 
   /* Base palette */
   --page-bg: #081321;
@@ -26,19 +30,19 @@
   --page-gradient-end: #1a293e;
   --surface: rgba(10, 20, 36, 0.66);
   --surface-strong: rgba(26, 42, 67, 0.58);
-  --glass-surface: rgba(11, 24, 43, 0.58);
-  --card-surface: rgba(25, 54, 88, 0.4);
+  --glass-surface: rgba(20, 22, 27, 0.84);
+  --card-surface: rgba(30, 33, 39, 0.78);
   --control-surface: rgba(19, 40, 71, 0.96);
   --project-image-bg: #12233b;
-  --border: rgba(157, 201, 255, 0.26);
+  --border: rgba(226, 232, 240, 0.14);
   --text-main: #f8fbff;
   --text-soft: #e2eeff;
   --text-faint: #b5caea;
-  --glass-highlight: rgba(255, 255, 255, 0.05);
-  --glass-panel-tint: rgba(46, 178, 255, 0.1);
-  --glass-panel-tint-alt: rgba(79, 70, 229, 0.07);
-  --glass-card-tint: rgba(46, 178, 255, 0.14);
-  --glass-card-tint-alt: rgba(34, 211, 238, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.065);
+  --glass-panel-tint: rgba(255, 255, 255, 0.025);
+  --glass-panel-tint-alt: rgba(0, 0, 0, 0.08);
+  --glass-card-tint: rgba(255, 255, 255, 0.035);
+  --glass-card-tint-alt: rgba(255, 255, 255, 0.01);
 
   /* Brand accents */
   --accent: #2eb2ff;
@@ -78,7 +82,10 @@
 :root[data-theme='light'] {
   color-scheme: light;
 
-  --shadow: 0 28px 80px rgba(15, 23, 42, 0.12);
+  --shadow: 0 24px 64px rgba(15, 23, 42, 0.11);
+  --card-shadow: 0 12px 28px rgba(15, 23, 42, 0.09);
+  --card-shadow-hover: 0 16px 34px rgba(15, 23, 42, 0.13);
+  --card-border-hover: rgba(15, 91, 214, 0.26);
 
   --page-bg: #eaf1fb;
   --page-gradient-start: #f7fbff;
@@ -86,19 +93,19 @@
   --page-gradient-end: #dde7f4;
   --surface: rgba(246, 249, 255, 0.68);
   --surface-strong: rgba(251, 253, 255, 0.72);
-  --glass-surface: rgba(247, 251, 255, 0.64);
-  --card-surface: rgba(252, 254, 255, 0.7);
+  --glass-surface: rgba(241, 243, 246, 0.84);
+  --card-surface: rgba(255, 255, 255, 0.78);
   --control-surface: rgba(239, 247, 255, 0.98);
   --project-image-bg: #dbe7f4;
-  --border: rgba(74, 114, 184, 0.2);
+  --border: rgba(51, 65, 85, 0.16);
   --text-main: #081a34;
   --text-soft: #365174;
   --text-faint: #617ca2;
   --glass-highlight: rgba(255, 255, 255, 0.84);
-  --glass-panel-tint: rgba(2, 132, 255, 0.06);
-  --glass-panel-tint-alt: rgba(79, 70, 229, 0.045);
-  --glass-card-tint: rgba(2, 132, 255, 0.08);
-  --glass-card-tint-alt: rgba(6, 182, 212, 0.05);
+  --glass-panel-tint: rgba(255, 255, 255, 0.2);
+  --glass-panel-tint-alt: rgba(15, 23, 42, 0.025);
+  --glass-card-tint: rgba(255, 255, 255, 0.24);
+  --glass-card-tint-alt: rgba(15, 23, 42, 0.018);
 
   --accent: #0284ff;
   --accent-strong: #0f5bd6;
