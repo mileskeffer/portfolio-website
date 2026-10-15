@@ -41,14 +41,14 @@ const projectGroups: Array<{
   title: string;
 }> = [
   {
-    id: 'full-stack',
-    title: 'Full Stack Projects',
-    description: 'Web applications, data-backed platforms, APIs, and end-to-end product work.'
-  },
-  {
     id: 'robotics-embedded',
     title: 'Robotics and Embedded Projects',
     description: 'Robotics, connected devices, firmware, sensing, simulation, and autonomous systems.'
+  },
+  {
+    id: 'full-stack',
+    title: 'Full Stack Projects',
+    description: 'Web applications, data-backed platforms, APIs, and end-to-end product work.'
   },
   {
     id: 'misc',
@@ -75,12 +75,61 @@ function getProjectCategory(project: ProjectItem): ProjectItem['category'] {
   return 'misc';
 }
 
+const maxCardStackChips = 3;
+
+function ProjectLinks({ project }: { project: ProjectItem }) {
+  return (
+    <>
+      {project.liveUrl ? (
+        <a href={project.liveUrl} target="_blank" rel="noreferrer">
+          Live site
+        </a>
+      ) : null}
+      <a href={project.sourceUrl} target="_blank" rel="noreferrer">
+        GitHub
+      </a>
+      {project.devpostUrl ? (
+        <a href={project.devpostUrl} target="_blank" rel="noreferrer">
+          DevPost
+        </a>
+      ) : null}
+    </>
+  );
+}
+
+function ProjectMeta({ project }: { project: ProjectItem }) {
+  return (
+    <p className="project-meta">
+      <span>{project.year}</span>
+      {project.featured ? <span className="project-meta-featured">Featured</span> : null}
+    </p>
+  );
+}
+
+function ChevronIcon({ direction }: { direction: 'left' | 'right' }) {
+  return (
+    <svg aria-hidden="true" className="project-image-nav-icon" viewBox="0 0 20 20">
+      <path
+        d={direction === 'left' ? 'M12.5 4.5 7 10l5.5 5.5' : 'M7.5 4.5 13 10l-5.5 5.5'}
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  );
+}
+
 function ProjectCard({ project }: { project: ProjectItem }) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [imageMotion, setImageMotion] = useState<ImageMotion>('forward');
+  const detailTriggerRef = useRef<HTMLButtonElement | null>(null);
   const imageCount = project.images.length;
   const activeImage = project.images[activeImageIndex] ?? project.images[0];
+  const visibleStack = project.stack.slice(0, maxCardStackChips);
+  const hiddenStack = project.stack.slice(maxCardStackChips);
 
   function showImage(nextIndex: number, motion?: ImageMotion) {
     const normalizedIndex = (nextIndex + imageCount) % imageCount;
@@ -103,17 +152,30 @@ function ProjectCard({ project }: { project: ProjectItem }) {
     showImage(activeImageIndex + 1, 'forward');
   }
 
+  // Any click on the card opens the detail view, except on its own controls (carousel buttons, links).
+  function handleCardClick(event: ReactMouseEvent<HTMLElement>) {
+    const target = event.target as Element;
+
+    // React bubbles clicks from the portaled dialog through this card; ignore anything outside the card's DOM.
+    if (!event.currentTarget.contains(target) || target.closest('a, button')) {
+      return;
+    }
+
+    setIsDetailOpen(true);
+  }
+
   useEffect(() => {
-    if (!isLightboxOpen || typeof document === 'undefined') {
+    if (!isDetailOpen || typeof document === 'undefined') {
       return;
     }
 
     const previousOverflow = document.body.style.overflow;
+    const detailTrigger = detailTriggerRef.current;
     document.body.style.overflow = 'hidden';
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        setIsLightboxOpen(false);
+        setIsDetailOpen(false);
         return;
       }
 
@@ -141,206 +203,191 @@ function ProjectCard({ project }: { project: ProjectItem }) {
     return () => {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener('keydown', handleKeyDown);
+      detailTrigger?.focus();
     };
-  }, [imageCount, isLightboxOpen]);
+  }, [imageCount, isDetailOpen]);
+
+  const imageNavButtons =
+    imageCount > 1 ? (
+      <>
+        <button
+          aria-label={`Show previous image for ${project.title}`}
+          className="project-image-nav project-image-nav-prev"
+          onClick={showPreviousImage}
+          type="button"
+        >
+          <ChevronIcon direction="left" />
+        </button>
+        <button
+          aria-label={`Show next image for ${project.title}`}
+          className="project-image-nav project-image-nav-next"
+          onClick={showNextImage}
+          type="button"
+        >
+          <ChevronIcon direction="right" />
+        </button>
+      </>
+    ) : null;
+
+  function renderImageDots(className: string) {
+    return imageCount > 1 ? (
+      <div className={`carousel-dots ${className}`} aria-label={`${project.title} image selector`}>
+        {project.images.map((image, index) => (
+          <button
+            aria-label={`Show image ${index + 1} for ${project.title}`}
+            aria-pressed={index === activeImageIndex}
+            className={`carousel-dot ${index === activeImageIndex ? 'is-active' : ''}`}
+            key={`${project.id}-${image.src}`}
+            onClick={() => showImage(index, index > activeImageIndex ? 'forward' : 'backward')}
+            type="button"
+          />
+        ))}
+      </div>
+    ) : null;
+  }
 
   return (
-    <article className="project-card" key={project.id} role="listitem">
-      <div className="project-media-column">
-        <div className="project-carousel">
-          <div className="project-image-frame">
-            <button
-              aria-label={`Open larger image for ${project.title}: ${activeImage.caption}`}
-              className="project-image-button"
-              onClick={() => setIsLightboxOpen(true)}
-              type="button"
-            >
-              <img
-                alt={activeImage.alt}
-                className="project-image"
-                data-motion={imageMotion}
-                draggable={false}
-                key={`${project.id}-${activeImage.src}`}
-                src={activeImage.src}
-              />
-              <span className="project-image-zoom-hint" aria-hidden="true">
-                <svg aria-hidden="true" className="project-image-zoom-icon" viewBox="0 0 20 20">
-                  <path
-                    d="M4 8V4h4M12 4h4v4M4 12v4h4M16 12v4h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.8"
-                  />
-                </svg>
-              </span>
-            </button>
+    <article className="project-card" key={project.id} onClick={handleCardClick} role="listitem">
+      <div className="project-image-frame">
+        <img
+          alt={activeImage.alt}
+          className="project-image"
+          data-motion={imageMotion}
+          draggable={false}
+          key={`${project.id}-${activeImage.src}`}
+          src={activeImage.src}
+        />
+        {imageNavButtons}
+        {renderImageDots('project-image-dots')}
+      </div>
 
-            {imageCount > 1 ? (
-              <div className="project-carousel-controls">
-                <button
-                  aria-label={`Show previous image for ${project.title}`}
-                  className="carousel-button"
-                  onClick={showPreviousImage}
-                  type="button"
-                >
-                  Prev
-                </button>
-                <button
-                  aria-label={`Show next image for ${project.title}`}
-                  className="carousel-button"
-                  onClick={showNextImage}
-                  type="button"
-                >
-                  Next
-                </button>
-              </div>
-            ) : null}
-          </div>
+      <div className="project-card-body">
+        <ProjectMeta project={project} />
+        <h3>{project.title}</h3>
+        <p className="project-summary">{project.summary}</p>
 
-          <div className="project-carousel-footer">
-            <p className="project-carousel-caption" data-motion={imageMotion} key={`${project.id}-${activeImage.caption}`}>
-              {activeImage.caption}
-            </p>
+        <ul className="chip-list" aria-label={`${project.title} stack`}>
+          {visibleStack.map((item) => (
+            <li className="chip" key={item}>
+              {item}
+            </li>
+          ))}
+          {hiddenStack.length ? (
+            <li className="chip chip-more" title={hiddenStack.join(', ')}>
+              +{hiddenStack.length}
+            </li>
+          ) : null}
+        </ul>
 
-            {imageCount > 1 ? (
-              <div className="carousel-dots" aria-label={`${project.title} image selector`}>
-                {project.images.map((image, index) => (
-                  <button
-                    aria-label={`Show image ${index + 1} for ${project.title}`}
-                    aria-pressed={index === activeImageIndex}
-                    className={`carousel-dot ${index === activeImageIndex ? 'is-active' : ''}`}
-                    key={`${project.id}-${image.src}`}
-                    onClick={() => showImage(index, index > activeImageIndex ? 'forward' : 'backward')}
-                    type="button"
-                  />
-                ))}
-              </div>
-            ) : null}
-          </div>
+        <div className="card-actions">
+          <button
+            className="project-details-button"
+            onClick={() => setIsDetailOpen(true)}
+            ref={detailTriggerRef}
+            type="button"
+          >
+            View details
+          </button>
+          <span className="project-links">
+            <ProjectLinks project={project} />
+          </span>
         </div>
       </div>
 
-      {isLightboxOpen && typeof document !== 'undefined'
+      {isDetailOpen && typeof document !== 'undefined'
         ? createPortal(
             <div
-              aria-labelledby={`${project.id}-lightbox-title`}
+              aria-labelledby={`${project.id}-detail-title`}
               aria-modal="true"
-              className="project-lightbox"
-              onClick={() => setIsLightboxOpen(false)}
+              className="project-detail-overlay"
+              onClick={() => setIsDetailOpen(false)}
               role="dialog"
             >
-              <div className="project-lightbox-surface" onClick={(event) => event.stopPropagation()}>
-                <div className="project-lightbox-header">
+              <div className="project-detail-surface" onClick={(event) => event.stopPropagation()}>
+                <div className="project-detail-header">
                   <div>
-                    <p className="project-lightbox-eyebrow" data-motion={imageMotion}>
-                      {project.title}
-                    </p>
-                    <h4 data-motion={imageMotion} id={`${project.id}-lightbox-title`} key={`${project.id}-lightbox-title-${activeImage.caption}`}>
-                      {activeImage.caption}
-                    </h4>
+                    <ProjectMeta project={project} />
+                    <h3 id={`${project.id}-detail-title`}>{project.title}</h3>
                   </div>
 
                   <button
-                    aria-label="Close enlarged project image"
+                    aria-label="Close project details"
+                    autoFocus
                     className="modal-close"
-                    onClick={() => setIsLightboxOpen(false)}
+                    onClick={() => setIsDetailOpen(false)}
                     type="button"
                   >
                     Close
                   </button>
                 </div>
 
-                <div className="project-lightbox-image-shell">
-                  <img
-                    alt={activeImage.alt}
-                    className="project-lightbox-image"
-                    data-motion={imageMotion}
-                    key={`${project.id}-lightbox-${activeImage.src}`}
-                    src={activeImage.src}
-                  />
-
-                  {imageCount > 1 ? (
-                    <div className="project-lightbox-controls">
-                      <button
-                        aria-label={`Show previous enlarged image for ${project.title}`}
-                        className="carousel-button"
-                        onClick={showPreviousImage}
-                        type="button"
-                      >
-                        Prev
-                      </button>
-                      <button
-                        aria-label={`Show next enlarged image for ${project.title}`}
-                        className="carousel-button"
-                        onClick={showNextImage}
-                        type="button"
-                      >
-                        Next
-                      </button>
+                <div className="project-detail-layout">
+                  <div className="project-gallery">
+                    <div className="project-gallery-stage">
+                      <img
+                        alt={activeImage.alt}
+                        className="project-gallery-image"
+                        data-motion={imageMotion}
+                        key={`${project.id}-detail-${activeImage.src}`}
+                        src={activeImage.src}
+                      />
+                      {imageNavButtons}
                     </div>
-                  ) : null}
+
+                    <div className="project-gallery-meta">
+                      <p className="project-gallery-caption" data-motion={imageMotion} key={`${project.id}-caption-${activeImage.src}`}>
+                        {activeImage.caption}
+                      </p>
+                      {imageCount > 1 ? (
+                        <span className="project-gallery-counter">
+                          {activeImageIndex + 1} / {imageCount}
+                        </span>
+                      ) : null}
+                    </div>
+
+                    {renderImageDots('project-gallery-dots')}
+                  </div>
+
+                  <div className="project-detail-copy">
+                    <p>{project.summary}</p>
+
+                    <section className="project-details-block">
+                      <span className="aside-label">My role</span>
+                      <p>{project.impact}</p>
+                    </section>
+
+                    {project.details.length ? (
+                      <section className="project-details-block">
+                        <span className="aside-label">Highlights</span>
+                        <ul className="project-detail-list">
+                          {project.details.map((detail) => (
+                            <li key={detail}>{detail}</li>
+                          ))}
+                        </ul>
+                      </section>
+                    ) : null}
+
+                    <section className="project-details-block">
+                      <span className="aside-label">Built with</span>
+                      <ul className="chip-list" aria-label={`${project.title} full stack`}>
+                        {project.stack.map((item) => (
+                          <li className="chip" key={item}>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  </div>
                 </div>
 
-                <div className="project-lightbox-meta">
-                  <p className="project-lightbox-caption" data-motion={imageMotion} key={`${project.id}-lightbox-caption-${activeImage.alt}`}>
-                    {activeImage.alt}
-                  </p>
-                  {imageCount > 1 ? (
-                    <span className="project-lightbox-counter">
-                      {activeImageIndex + 1} / {imageCount}
-                    </span>
-                  ) : null}
+                <div className="card-actions project-details-actions">
+                  <ProjectLinks project={project} />
                 </div>
               </div>
             </div>,
             document.body
           )
         : null}
-
-      <div className="project-copy-column">
-        <div className="card-topline">
-          <span>{project.year}</span>
-          <span>{project.featured ? 'Featured' : 'Case study'}</span>
-        </div>
-
-        <h3>{project.title}</h3>
-        <div className="project-copy-body">
-          <p>{project.summary}</p>
-          <p className="impact-copy">{project.impact}</p>
-
-          <ul className="project-detail-list">
-            {project.details.map((detail) => (
-              <li key={detail}>{detail}</li>
-            ))}
-          </ul>
-
-          <ul className="chip-list" aria-label={`${project.title} stack`}>
-            {project.stack.map((item) => (
-              <li className="chip" key={item}>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="card-actions">
-          {project.liveUrl ? (
-            <a href={project.liveUrl} target="_blank" rel="noreferrer">
-              Live site
-            </a>
-          ) : null}
-          <a href={project.sourceUrl} target="_blank" rel="noreferrer">
-            GitHub link
-          </a>
-          {project.devpostUrl ? (
-            <a href={project.devpostUrl} target="_blank" rel="noreferrer">
-              DevPost
-            </a>
-          ) : null}
-        </div>
-      </div>
     </article>
   );
 }
@@ -357,6 +404,7 @@ function ProjectRail({
   title: string;
 }) {
   const [isDragging, setIsDragging] = useState(false);
+  const [canScroll, setCanScroll] = useState(false);
   const railRef = useRef<HTMLDivElement | null>(null);
   const dragStateRef = useRef<{
     moved: boolean;
@@ -366,8 +414,26 @@ function ProjectRail({
   } | null>(null);
   const suppressClickRef = useRef(false);
 
+  // Only advertise dragging/swiping when the rail actually overflows (e.g. 2-3 cards fit on desktop).
+  useEffect(() => {
+    const rail = railRef.current;
+
+    if (!rail || typeof ResizeObserver === 'undefined') {
+      return;
+    }
+
+    const updateCanScroll = () => setCanScroll(rail.scrollWidth > rail.clientWidth + 1);
+    const resizeObserver = new ResizeObserver(updateCanScroll);
+
+    updateCanScroll();
+    resizeObserver.observe(rail);
+
+    return () => resizeObserver.disconnect();
+  }, [projects.length]);
+
   function handlePointerDown(event: ReactPointerEvent<HTMLDivElement>) {
-    if (event.button !== 0) {
+    // Touch and pen get native swipe scrolling (with scroll snap), so only mice use the manual drag.
+    if (event.pointerType !== 'mouse' || event.button !== 0) {
       return;
     }
 
@@ -451,12 +517,17 @@ function ProjectRail({
           <h3 id={`${id}-projects-heading`}>{title}</h3>
           <p className="project-rail-copy">{description}</p>
         </div>
-        <span className="project-rail-note">Click and drag sideways to browse</span>
+        {canScroll ? (
+          <span className="project-rail-note">
+            <span className="project-rail-note-mouse">Click and drag sideways to browse</span>
+            <span className="project-rail-note-touch">Swipe sideways to browse</span>
+          </span>
+        ) : null}
       </div>
 
       <div
         aria-label={`${title} showcase`}
-        className={`project-rail ${isDragging ? 'is-dragging' : ''}`}
+        className={`project-rail ${canScroll ? 'can-scroll' : ''} ${isDragging ? 'is-dragging' : ''}`}
         onClickCapture={handleClickCapture}
         onPointerCancel={(event) => finishDrag(event.pointerId)}
         onPointerDown={handlePointerDown}
@@ -594,6 +665,67 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
     };
   }, []);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const sections = navItems
+      .map(({ id }) => document.getElementById(id))
+      .filter((section): section is HTMLElement => section instanceof HTMLElement);
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const minOpacity = 0.05;
+    const maxShift = 50;
+    let frameId: number | null = null;
+
+    const updateReveal = () => {
+      frameId = null;
+      const viewportHeight = window.innerHeight;
+
+      sections.forEach((section) => {
+        let progress = 1;
+
+        if (!reducedMotionQuery.matches) {
+          const rect = section.getBoundingClientRect();
+          // Short sections (e.g. contact at the page bottom) must still reach full opacity once fully in view.
+          const fadeDistance = Math.max(1, Math.min(viewportHeight * 0.55, rect.height * 0.8));
+          progress = Math.min(1, Math.max(0, (viewportHeight - rect.top) / fadeDistance));
+        }
+
+        const eased = 1 - (1 - progress) ** 3;
+        section.style.setProperty('--reveal-opacity', (minOpacity + (1 - minOpacity) * eased).toFixed(3));
+        section.style.setProperty('--reveal-shift', `${((1 - eased) * maxShift).toFixed(1)}px`);
+      });
+    };
+
+    const requestRevealUpdate = () => {
+      if (frameId !== null) {
+        return;
+      }
+
+      frameId = window.requestAnimationFrame(updateReveal);
+    };
+
+    requestRevealUpdate();
+    window.addEventListener('scroll', requestRevealUpdate, { passive: true });
+    window.addEventListener('resize', requestRevealUpdate);
+    reducedMotionQuery.addEventListener('change', requestRevealUpdate);
+
+    return () => {
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+
+      window.removeEventListener('scroll', requestRevealUpdate);
+      window.removeEventListener('resize', requestRevealUpdate);
+      reducedMotionQuery.removeEventListener('change', requestRevealUpdate);
+      sections.forEach((section) => {
+        section.style.removeProperty('--reveal-opacity');
+        section.style.removeProperty('--reveal-shift');
+      });
+    };
+  }, []);
+
   function toggleTheme() {
     const nextTheme: ThemeMode = themeMode === 'dark' ? 'light' : 'dark';
     setThemeMode(nextTheme);
@@ -672,11 +804,7 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
             type="button"
           >
             <span className="theme-toggle-icon" aria-hidden="true">
-              {themeMode === 'dark' ? 'Moon' : 'Sun'}
-            </span>
-            <span className="theme-toggle-copy">
-              <strong>Theme</strong>
-              <span>{themeMode === 'dark' ? 'Dark mode' : themeMode === 'light' ? 'Light mode' : 'Auto'}</span>
+              {themeMode === 'dark' ? 'Dark' : 'Light'}
             </span>
           </button>
         </div>
@@ -690,8 +818,8 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
           </div>
 
           <div className="hero-grid">
-            <article className="hero-card hero-copy">
-              <p className="eyebrow">Exploring where hardware meets software</p>
+            <article className="hero-copy">
+              <h2 className="hero-copy-title">About me</h2>
               <p className="hero-summary">{portfolio.about.summary}</p>
 
               <div className="action-row">
@@ -704,7 +832,7 @@ export default function PortfolioPage({ portfolio, contactDetails }: Props) {
               </div>
             </article>
 
-            <aside className="hero-card hero-aside">
+            <aside className="hero-aside">
               <div className="aside-block">
                 <span className="aside-label">Availability</span>
                 <p>{portfolio.about.availability}</p>
