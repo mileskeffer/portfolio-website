@@ -793,7 +793,6 @@ a {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   padding: 0;
   /* The whole card opens the detail view. */
   cursor: pointer;
@@ -816,6 +815,8 @@ a {
   position: relative;
   overflow: hidden;
   aspect-ratio: 16 / 10;
+  /* The image rounds its own top corners so the card itself doesn't clip (which would cut off logo labels). */
+  border-radius: calc(var(--radius-md) - 1px) calc(var(--radius-md) - 1px) 0 0;
   border-bottom: 1px solid var(--border);
   background: var(--project-image-bg);
 }
@@ -1150,21 +1151,109 @@ a {
   font-size: 0.88rem;
 }
 
-.project-card .chip-list {
-  gap: 0.4rem;
-  margin: 0.9rem 0 1.1rem;
+/* Card tech stack: a row of monochrome logos, each with a hover label. */
+.tech-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.95rem 0 1.15rem;
+  padding: 0;
+  list-style: none;
 }
 
-.project-card .chip {
-  padding: 0.3rem 0.6rem;
-  font-size: 0.8rem;
-}
-
-.chip.chip-more {
+.tech-logo {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
   border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text-faint);
-  cursor: help;
+  border-radius: 0.6rem;
+  background: var(--control-surface);
+  color: var(--text-soft);
+  transition:
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.tech-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex: 0 0 auto;
+}
+
+.tech-monogram {
+  display: inline-grid;
+  place-items: center;
+  width: auto;
+  height: auto;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.tech-logo::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: calc(100% + 0.4rem);
+  /* Left-anchored (not centered) so long labels on the first icons aren't clipped by the card edge. */
+  left: 0;
+  z-index: 2;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 0.45rem;
+  background: var(--modal-bg);
+  box-shadow: var(--card-shadow);
+  color: var(--text-main);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.2rem);
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease;
+}
+
+/* Later icons anchor their label to the right so it extends back over the row instead of past the card edge. */
+.tech-logo:nth-child(n + 4)::after {
+  right: 0;
+  left: auto;
+}
+
+.tech-logo:hover {
+  border-color: var(--card-border-hover);
+  color: var(--accent-strong);
+}
+
+.tech-logo:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.chip.chip-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.chip-with-icon .tech-icon {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.chip-with-icon .tech-monogram {
+  font-size: 0.68rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 .card-actions {
