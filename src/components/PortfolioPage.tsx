@@ -8,6 +8,7 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import type { ClientPortfolioContent, ProtectedContactContent } from '../lib/portfolio';
+import { getBadgesForStackItem, getTechBadges, type TechBadge } from '../lib/techIcons';
 
 type Props = {
   portfolio: ClientPortfolioContent;
@@ -75,8 +76,6 @@ function getProjectCategory(project: ProjectItem): ProjectItem['category'] {
   return 'misc';
 }
 
-const maxCardStackChips = 3;
-
 function ProjectLinks({ project }: { project: ProjectItem }) {
   return (
     <>
@@ -106,6 +105,18 @@ function ProjectMeta({ project }: { project: ProjectItem }) {
   );
 }
 
+function TechBadgeIcon({ badge }: { badge: TechBadge }) {
+  return badge.icon ? (
+    <svg aria-hidden="true" className="tech-icon" viewBox="0 0 24 24">
+      <path d={badge.icon.path} fill="currentColor" />
+    </svg>
+  ) : (
+    <span aria-hidden="true" className="tech-icon tech-monogram">
+      {badge.monogram}
+    </span>
+  );
+}
+
 function ChevronIcon({ direction }: { direction: 'left' | 'right' }) {
   return (
     <svg aria-hidden="true" className="project-image-nav-icon" viewBox="0 0 20 20">
@@ -128,8 +139,7 @@ function ProjectCard({ project }: { project: ProjectItem }) {
   const detailTriggerRef = useRef<HTMLButtonElement | null>(null);
   const imageCount = project.images.length;
   const activeImage = project.images[activeImageIndex] ?? project.images[0];
-  const visibleStack = project.stack.slice(0, maxCardStackChips);
-  const hiddenStack = project.stack.slice(maxCardStackChips);
+  const techBadges = getTechBadges(project.stack);
 
   function showImage(nextIndex: number, motion?: ImageMotion) {
     const normalizedIndex = (nextIndex + imageCount) % imageCount;
@@ -266,18 +276,16 @@ function ProjectCard({ project }: { project: ProjectItem }) {
         <h3>{project.title}</h3>
         <p className="project-summary">{project.summary}</p>
 
-        <ul className="chip-list" aria-label={`${project.title} stack`}>
-          {visibleStack.map((item) => (
-            <li className="chip" key={item}>
-              {item}
-            </li>
-          ))}
-          {hiddenStack.length ? (
-            <li className="chip chip-more" title={hiddenStack.join(', ')}>
-              +{hiddenStack.length}
-            </li>
-          ) : null}
-        </ul>
+        {techBadges.length ? (
+          <ul className="tech-logos" aria-label={`${project.title} built with`}>
+            {techBadges.map((badge) => (
+              <li className="tech-logo" data-label={badge.label} key={badge.key}>
+                <TechBadgeIcon badge={badge} />
+                <span className="sr-only">{badge.label}</span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
 
         <div className="card-actions">
           <button
@@ -370,11 +378,16 @@ function ProjectCard({ project }: { project: ProjectItem }) {
                     <section className="project-details-block">
                       <span className="aside-label">Built with</span>
                       <ul className="chip-list" aria-label={`${project.title} full stack`}>
-                        {project.stack.map((item) => (
-                          <li className="chip" key={item}>
-                            {item}
-                          </li>
-                        ))}
+                        {project.stack.map((item) => {
+                          const [badge] = getBadgesForStackItem(item);
+
+                          return (
+                            <li className={`chip ${badge ? 'chip-with-icon' : ''}`} key={item}>
+                              {badge ? <TechBadgeIcon badge={badge} /> : null}
+                              {item}
+                            </li>
+                          );
+                        })}
                       </ul>
                     </section>
                   </div>
